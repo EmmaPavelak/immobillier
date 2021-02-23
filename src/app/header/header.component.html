@@ -1,0 +1,22 @@
+<header>
+    <img src="../../assets/home.png" alt="home"> 
+
+    <div *ngIf="isconnected;then yes else no"></div>
+    <ng-template #yes>
+        Hello {{fullname}}<button class="button" (click)='logout()'>Logout</button> 
+    </ng-template>
+    <ng-template #no>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div>
+            <label for="name">Name : </label>
+            <input id="name" type="text" formControlName="name">
+            </div>
+        
+            <div>
+            <label for="password">Password : </label>
+            <input id="password" type="text" formControlName="password">
+            </div>
+            <button class="button" type="submit">Login</button>  
+        </form>
+    </ng-template>    
+</header>
