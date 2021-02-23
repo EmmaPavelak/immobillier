@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
   });
 
   userIndex:number = -1;
-  //@Output() isconnectedOutput = this.isconnected;
 
   constructor( private formBuilder: FormBuilder,private userService:UserService) { }
 
@@ -27,6 +26,7 @@ export class HeaderComponent implements OnInit {
     this.userService.user$.subscribe(data => {
       this.users = data;
     }) 
+    
   }
 
   onSubmit(): void {
@@ -35,11 +35,14 @@ export class HeaderComponent implements OnInit {
 
     this.users.forEach(element => {
       if(element.name == this.loginForm.value.name){       
-        this.userIndex= this.users.indexOf(element);   
-        
-        this.userService.userIndex= this.userIndex;
+        this.userIndex= this.users.indexOf(element);        
       }        
     });
+    this.userService.updateUserIndex(this.userIndex);
+
+    this.userService.userindex$.subscribe(data => {
+      console.log( data);
+      });
 
     this.loginForm.reset();
 

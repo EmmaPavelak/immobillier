@@ -22,10 +22,17 @@ export class AppComponent {
   });
 
   constructor(private propertyService:PropertyService,private userService:UserService,private formBuilder: FormBuilder) { 
+    this.userService.userindex$.subscribe(data => {
+      this.userIndex=data;    
+      });
+      console.log(this.userIndex);
+  
   }
 
   ngOnInit() {
+    
     this.getProperties(); 
+    
   }  
 
   getProperties(){

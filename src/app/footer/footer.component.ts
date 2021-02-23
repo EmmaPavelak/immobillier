@@ -18,6 +18,9 @@ export class FooterComponent implements OnInit {
   userIndex:number=0;
 
   constructor(private propertyService:PropertyService,private userService:UserService) { 
+    this.userService.userindex$.subscribe(data => {
+      this.userIndex=data;    
+      });
   }
   
   ngOnInit() {
@@ -26,11 +29,14 @@ export class FooterComponent implements OnInit {
       this.numberofproperties= data.length;
     })
 
+  
     this.userService.user$.subscribe(data => {
-      this.users = data;    
-      this.pay= data[this.userIndex]["pay"];
-      this.userIndex=this.userService.userIndex;
+      this.users = data;      
+      this.pay=data[this.userIndex]["pay"];
+      console.log(data);
     })
+    
+    console.log(this.userIndex)
     
   } 
 

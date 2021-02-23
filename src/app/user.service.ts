@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IUser } from './models/user.models';
 
@@ -30,9 +30,17 @@ export class UserService {
     }
   ]
 
+  
  public user$ : BehaviorSubject<IUser[]>;
+ public userindex$ : BehaviorSubject<number>;
  
  constructor() {
    this.user$ = new BehaviorSubject<IUser[]>(this.users);
+   this.userindex$ = new BehaviorSubject<number>(this.userIndex);
   } 
+
+  updateUserIndex(newUserindex: number){
+    this.userIndex = newUserindex;
+    this.userindex$.next(this.userIndex);
+  }
 }

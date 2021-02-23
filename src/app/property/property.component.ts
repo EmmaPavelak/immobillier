@@ -22,11 +22,12 @@ export class PropertyComponent implements OnInit {
   users: IUser[] = [];
 
   ngOnInit() {
+  
     this.userService.user$.subscribe(data => {
-      this.users = data;
-      //this.userIndex=this.userService.userIndex;
+      this.users = data;      
       this.userconnected=this.users[this.userIndex]["name"];      
     })    
+    
   }  
 
 }
